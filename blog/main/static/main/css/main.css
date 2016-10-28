@@ -1,0 +1,17 @@
+html, body {
+  margin: 0;
+  height: 100%;
+  text-align: center
+}
+body {
+  padding: 20px;
+  background: url(../img/background.jpg) no-repeat center center fixed;
+  background-size: cover;
+}
+a {
+    text-decoration: none;
+}
+
+h1 {
+  color:red;
+}
