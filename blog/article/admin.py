@@ -3,7 +3,7 @@ from article.models import Article, Comment
 
 
 class CommentModelAdmin(admin.ModelAdmin):
-    list_display = ['article', 'content']
+    list_display = ['article', 'content','pubDateTime']
     list_display_links = ['article']
     list_filter = ['article', 'content']
     search_fields = ['content']
