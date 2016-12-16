@@ -11,18 +11,21 @@
 <body>
 {% include 'main/menu.html' %}
 <h1>歡迎來到我的部落格</h1>
-{% for message in messages %}
-<p {% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</p>
-{% endfor %}
+{% include 'main/messages.html' %}
 <br>
-<a class="btn" href="{% url 'article:articleCreate' %}">新增文章</a>
-<br>
+{% include 'article/articlesearchForm.html' %}
+<p class="inlineBlock"><a class="btn" href="{% url 'article:articleCreate' %}">新增文章</a></p>
+<br><br><hr>
 {% for items in itemsList %}
   {% for item in items %}
     {% if forloop.first %}
-    <h3>{{ item.title }}</h3>
+    <h3 class="inlineBlock"><a href="{% url 'article:articleRead' item.id %}">{{ item.title }}</a></h3>
+    <form class="inlineBlock" method="post" action="{% url 'article:articleDelete' item.id %}">
+    {% csrf_token %}
+    <input class="btn" type="submit" value="刪除">
+    </form>
     <p>發表時間:{{ item.pubDateTime|date:'Y-m-d H:i' }}</p>
-    <div class=articleContent>{{ item.content|linebreaks|truncatewords_html:10 }}</div>
+    <div class=articleContent>{{ item.content|linebreaks|truncatewords_html:10 }}</div>    
     <p>按讚:{{ article.likes }}</p>
     {% else %}
       <p>
